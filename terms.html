@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Reset Password - SoftCrush</title>
@@ -22,11 +22,23 @@
     .card {
       width: 90%;
       max-width: 420px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 20px;
       padding: 28px;
       text-align: center;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 30px;
+    }
+
+    p {
+      color: #c9c6d8;
+      line-height: 1.5;
+      margin-bottom: 24px;
     }
 
     input {
@@ -35,10 +47,15 @@
       padding: 14px;
       margin-top: 12px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.08);
       color: white;
       font-size: 16px;
+      outline: none;
+    }
+
+    input::placeholder {
+      color: #b9b6c9;
     }
 
     button {
@@ -64,6 +81,7 @@
       font-size: 14px;
       color: #c9c6d8;
       line-height: 1.4;
+      min-height: 20px;
     }
 
     .success {
@@ -81,8 +99,8 @@
     <h1>Reset your password</h1>
     <p>Enter a new password for your SoftCrush account.</p>
 
-    <input id="password" type="password" placeholder="New password" />
-    <input id="confirm" type="password" placeholder="Confirm password" />
+    <input id="password" type="password" placeholder="New password" autocomplete="new-password" />
+    <input id="confirm" type="password" placeholder="Confirm password" autocomplete="new-password" />
 
     <button id="updateBtn" type="button">Update password</button>
 
@@ -90,115 +108,125 @@
   </div>
 
   <script>
-    const SUPABASE_URL = "https://hxgkaefwzouxtbbcgakq.supabase.co"
-    const SUPABASE_ANON_KEY = "PASTE_YOUR_SB_PUBLISHABLE_KEY_HERE"
+    const SUPABASE_URL = "https://hxgkaefwzouxtbbcgakq.supabase.co";
+    const SUPABASE_ANON_KEY = "YOUR_SB_PUBLISHABLE_KEY_HERE";
 
-    const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+    const sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-    const message = document.getElementById("message")
-    const updateBtn = document.getElementById("updateBtn")
+    const message = document.getElementById("message");
+    const updateBtn = document.getElementById("updateBtn");
 
-    let sessionReady = false
+    let sessionReady = false;
 
     function showMessage(text, type) {
-      message.innerText = text
-      message.className = "message " + (type || "")
-    }
-
-    function getHashParams() {
-      const hash = window.location.hash.substring(1)
-      return new URLSearchParams(hash)
+      message.innerText = text;
+      message.className = "message " + (type || "");
     }
 
     async function setupSession() {
       try {
-        const params = getHashParams()
+        const hash = window.location.hash.substring(1);
+        const params = new URLSearchParams(hash);
 
-        const access_token = params.get("access_token")
-        const refresh_token = params.get("refresh_token")
-        const error_code = params.get("error_code")
-        const error_description = params.get("error_description")
+        const accessToken = params.get("access_token");
+        const refreshToken = params.get("refresh_token");
+        const errorCode = params.get("error_code");
+        const errorDescription = params.get("error_description");
 
-        if (error_code) {
-          showMessage(error_description || "This reset link is invalid or expired.", "error")
-          return
+        if (errorCode) {
+          showMessage(
+            errorDescription || "This reset link is invalid or expired.",
+            "error"
+          );
+          return;
         }
 
-        if (!access_token || !refresh_token) {
-          showMessage("Invalid or expired reset link. Please request a new one.", "error")
-          return
+        if (!accessToken || !refreshToken) {
+          showMessage(
+            "Invalid or expired reset link. Please request a new one.",
+            "error"
+          );
+          return;
         }
 
-        const { error } = await client.auth.setSession({
-          access_token,
-          refresh_token,
-        })
+        const { error } = await sbClient.auth.setSession({
+          access_token: accessToken,
+          refresh_token: refreshToken,
+        });
 
         if (error) {
-          showMessage(error.message, "error")
-          return
+          showMessage(error.message, "error");
+          return;
         }
 
-        sessionReady = true
+        sessionReady = true;
 
-        window.history.replaceState({}, document.title, "/reset-password.html")
+        window.history.replaceState({}, document.title, "/reset-password.html");
 
-        showMessage("Reset link verified. Enter your new password.", "success")
+        showMessage("Reset link verified. Enter your new password.", "success");
       } catch (err) {
-        console.error(err)
-        showMessage(err.message || "Something went wrong verifying the reset link.", "error")
+        showMessage(
+          err.message || "Something went wrong verifying the reset link.",
+          "error"
+        );
       }
     }
 
-    async function resetPassword() {
+    async function handleResetPassword() {
       try {
         if (!sessionReady) {
-          showMessage("Reset link is not ready. Please request a new reset email.", "error")
-          return
+          showMessage(
+            "Reset link is not ready. Please request a new reset email.",
+            "error"
+          );
+          return;
         }
 
-        const password = document.getElementById("password").value
-        const confirm = document.getElementById("confirm").value
+        const password = document.getElementById("password").value;
+        const confirm = document.getElementById("confirm").value;
 
         if (password.length < 6) {
-          showMessage("Password must be at least 6 characters.", "error")
-          return
+          showMessage("Password must be at least 6 characters.", "error");
+          return;
         }
 
         if (password !== confirm) {
-          showMessage("Passwords do not match.", "error")
-          return
+          showMessage("Passwords do not match.", "error");
+          return;
         }
 
-        updateBtn.disabled = true
-        updateBtn.innerText = "Updating..."
+        updateBtn.disabled = true;
+        updateBtn.innerText = "Updating...";
 
-        const { error } = await client.auth.updateUser({
+        const { error } = await sbClient.auth.updateUser({
           password: password,
-        })
+        });
 
         if (error) {
-          showMessage(error.message, "error")
-          updateBtn.disabled = false
-          updateBtn.innerText = "Update password"
-          return
+          showMessage(error.message, "error");
+          updateBtn.disabled = false;
+          updateBtn.innerText = "Update password";
+          return;
         }
 
-        await client.auth.signOut()
+        await sbClient.auth.signOut();
 
-        showMessage("Password updated successfully. You can now sign in with your new password.", "success")
-        updateBtn.innerText = "Password updated"
+        showMessage(
+          "Password updated successfully. You can now sign in with your new password.",
+          "success"
+        );
+
+        updateBtn.innerText = "Password updated";
       } catch (err) {
-        console.error(err)
-        showMessage(err.message || "Could not update password.", "error")
-        updateBtn.disabled = false
-        updateBtn.innerText = "Update password"
+        showMessage(err.message || "Could not update password.", "error");
+        updateBtn.disabled = false;
+        updateBtn.innerText = "Update password";
       }
     }
 
-    updateBtn.addEventListener("click", resetPassword)
+    updateBtn.addEventListener("click", handleResetPassword);
 
-    setupSession()
+    setupSession();
   </script>
 </body>
 </html>
