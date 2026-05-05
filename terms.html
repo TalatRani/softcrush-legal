@@ -1,232 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Reset Password - SoftCrush</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #121126;
-      color: white;
-      display: flex;
-      min-height: 100vh;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .card {
-      width: 90%;
-      max-width: 420px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 20px;
-      padding: 28px;
-      text-align: center;
-      box-sizing: border-box;
-    }
-
-    h1 {
-      margin: 0 0 12px;
-      font-size: 30px;
-    }
-
-    p {
-      color: #c9c6d8;
-      line-height: 1.5;
-      margin-bottom: 24px;
-    }
-
-    input {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 14px;
-      margin-top: 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      background: rgba(255, 255, 255, 0.08);
-      color: white;
-      font-size: 16px;
-      outline: none;
-    }
-
-    input::placeholder {
-      color: #b9b6c9;
-    }
-
-    button {
-      width: 100%;
-      margin-top: 18px;
-      padding: 14px;
-      border: none;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #ff4f8b, #a855f7);
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    .message {
-      margin-top: 16px;
-      font-size: 14px;
-      color: #c9c6d8;
-      line-height: 1.4;
-      min-height: 20px;
-    }
-
-    .success {
-      color: #7ee787;
-    }
-
-    .error {
-      color: #ff8a8a;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SoftCrush · Privacy Policy</title>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+    color: #374151;
+    line-height: 1.65;
+    background: linear-gradient(180deg, #fff0f5 0%, #f5f0ff 100%);
+    min-height: 100vh;
+  }
+  h1 { color: #ff5593; font-size: 32px; margin: 0 0 6px; }
+  h2 { color: #1f2937; font-size: 18px; margin-top: 32px; margin-bottom: 8px; }
+  .updated { color: #9ca3af; font-size: 13px; margin-bottom: 32px; }
+  p, li { font-size: 15px; }
+  ul { padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  a { color: #ff5593; }
+  .nav { margin-bottom: 32px; }
+  .nav a { margin-right: 16px; text-decoration: none; font-weight: 600; }
+  .logo { font-size: 32px; margin-bottom: 8px; }
+</style>
 </head>
-
 <body>
-  <div class="card">
-    <h1>Reset your password</h1>
-    <p>Enter a new password for your SoftCrush account.</p>
 
-    <input id="password" type="password" placeholder="New password" autocomplete="new-password" />
-    <input id="confirm" type="password" placeholder="Confirm password" autocomplete="new-password" />
+<div class="logo">🌸</div>
+<h1>SoftCrush</h1>
+<div class="nav">
+  <a href="index.html">Privacy</a>
+  <a href="terms.html">Terms</a>
+</div>
 
-    <button id="updateBtn" type="button">Update password</button>
+<h1>Privacy Policy</h1>
+<p class="updated">Last updated: 1 May 2026</p>
 
-    <div id="message" class="message">Checking reset link...</div>
-  </div>
+<h2>1. Information We Collect</h2>
+<p>When you use SoftCrush we collect:</p>
+<ul>
+  <li>Account info: email, password (encrypted), date of birth</li>
+  <li>Profile info: name, age, city, bio, interests, photos</li>
+  <li>Approximate location to find nearby matches</li>
+  <li>Messages you send to your matches</li>
+  <li>Likes, matches, blocks, and reports</li>
+</ul>
 
-  <script>
-    const SUPABASE_URL = "https://hxgkaefwzouxtbbcgakq.supabase.co";
-    const SUPABASE_ANON_KEY = "sb_publishable_MJN3qyEsNQl6_N3b_BG_bw_IneydczQ";
+<h2>2. How We Use Your Data</h2>
+<p>We use your data to:</p>
+<ul>
+  <li>Provide the matching and messaging features</li>
+  <li>Show you nearby profiles based on your search radius</li>
+  <li>Keep the community safe (moderation, blocks, reports)</li>
+  <li>Communicate important updates about your account</li>
+</ul>
 
-    const sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+<h2>3. Data Sharing</h2>
+<p>We do not sell your personal data. We share limited information only with:</p>
+<ul>
+  <li>Other users — your profile (name, age, photos, bio, interests, city, distance) is visible to other authenticated users</li>
+  <li>Service providers — Supabase (database, storage, auth) under strict data agreements</li>
+  <li>Legal authorities — when required by law or to protect user safety</li>
+</ul>
 
-    const message = document.getElementById("message");
-    const updateBtn = document.getElementById("updateBtn");
+<h2>4. Location Data</h2>
+<p>We use your approximate location only to calculate distance to other users. Your exact coordinates are never shown to other users — they only see distance in kilometres. You can disable location at any time from your device settings.</p>
 
-    let sessionReady = false;
+<h2>5. Photos</h2>
+<p>Photos you upload are stored privately. Only authenticated SoftCrush users can view photos. Photos are accessed via signed URLs that expire over time.</p>
 
-    function showMessage(text, type) {
-      message.innerText = text;
-      message.className = "message " + (type || "");
-    }
+<h2>6. Your Rights</h2>
+<p>You have the right to:</p>
+<ul>
+  <li>Access your data — download via Profile settings</li>
+  <li>Correct inaccurate data — edit anytime in Profile</li>
+  <li>Delete your account — Profile → Delete account (permanent)</li>
+  <li>Object to processing — contact admin@softcrush.app</li>
+</ul>
 
-    async function setupSession() {
-      try {
-        const hash = window.location.hash.substring(1);
-        const params = new URLSearchParams(hash);
+<h2>7. Data Retention</h2>
+<p>We keep your data while your account is active. When you delete your account all your personal data is permanently deleted within 30 days, except where we are legally required to retain it.</p>
 
-        const accessToken = params.get("access_token");
-        const refreshToken = params.get("refresh_token");
-        const errorCode = params.get("error_code");
-        const errorDescription = params.get("error_description");
+<h2>8. Children</h2>
+<p>SoftCrush is strictly for users 18 and older. We verify age at signup. If we discover an account belongs to someone under 18 we delete it immediately.</p>
 
-        if (errorCode) {
-          showMessage(
-            errorDescription || "This reset link is invalid or expired.",
-            "error"
-          );
-          return;
-        }
+<h2>9. Security</h2>
+<p>We use industry-standard encryption for data in transit (HTTPS/TLS) and at rest. Passwords are hashed and never stored in plain text.</p>
 
-        if (!accessToken || !refreshToken) {
-          showMessage(
-            "Invalid or expired reset link. Please request a new one.",
-            "error"
-          );
-          return;
-        }
+<h2>10. Changes</h2>
+<p>We may update this policy. Material changes will be communicated via email or in-app notice.</p>
 
-        const { error } = await sbClient.auth.setSession({
-          access_token: accessToken,
-          refresh_token: refreshToken,
-        });
+<h2>11. Contact</h2>
+<p>Privacy questions: <a href="mailto:admin@softcrush.app">admin@softcrush.app</a><br>
+Safety concerns: <a href="mailto:admin@softcrush.app">admin@softcrush.app</a></p>
 
-        if (error) {
-          showMessage(error.message, "error");
-          return;
-        }
-
-        sessionReady = true;
-
-        window.history.replaceState({}, document.title, "/reset-password.html");
-
-        showMessage("Reset link verified. Enter your new password.", "success");
-      } catch (err) {
-        showMessage(
-          err.message || "Something went wrong verifying the reset link.",
-          "error"
-        );
-      }
-    }
-
-    async function handleResetPassword() {
-      try {
-        if (!sessionReady) {
-          showMessage(
-            "Reset link is not ready. Please request a new reset email.",
-            "error"
-          );
-          return;
-        }
-
-        const password = document.getElementById("password").value;
-        const confirm = document.getElementById("confirm").value;
-
-        if (password.length < 6) {
-          showMessage("Password must be at least 6 characters.", "error");
-          return;
-        }
-
-        if (password !== confirm) {
-          showMessage("Passwords do not match.", "error");
-          return;
-        }
-
-        updateBtn.disabled = true;
-        updateBtn.innerText = "Updating...";
-
-        const { error } = await sbClient.auth.updateUser({
-          password: password,
-        });
-
-        if (error) {
-          showMessage(error.message, "error");
-          updateBtn.disabled = false;
-          updateBtn.innerText = "Update password";
-          return;
-        }
-
-        await sbClient.auth.signOut();
-
-        showMessage(
-          "Password updated successfully. You can now sign in with your new password.",
-          "success"
-        );
-
-        updateBtn.innerText = "Password updated";
-      } catch (err) {
-        showMessage(err.message || "Could not update password.", "error");
-        updateBtn.disabled = false;
-        updateBtn.innerText = "Update password";
-      }
-    }
-
-    updateBtn.addEventListener("click", handleResetPassword);
-
-    setupSession();
-  </script>
 </body>
 </html>
