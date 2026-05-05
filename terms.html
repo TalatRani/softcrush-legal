@@ -1,95 +1,204 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SoftCrush · Terms of Service</title>
-<style>
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 40px 24px 80px;
-    color: #374151;
-    line-height: 1.65;
-    background: linear-gradient(180deg, #fff0f5 0%, #f5f0ff 100%);
-    min-height: 100vh;
-  }
-  h1 { color: #ff5593; font-size: 32px; margin: 0 0 6px; }
-  h2 { color: #1f2937; font-size: 18px; margin-top: 32px; margin-bottom: 8px; }
-  .updated { color: #9ca3af; font-size: 13px; margin-bottom: 32px; }
-  p, li { font-size: 15px; }
-  ul { padding-left: 20px; }
-  li { margin-bottom: 4px; }
-  a { color: #ff5593; }
-  .nav { margin-bottom: 32px; }
-  .nav a { margin-right: 16px; text-decoration: none; font-weight: 600; }
-  .logo { font-size: 32px; margin-bottom: 8px; }
-</style>
+  <meta charset="UTF-8" />
+  <title>Reset Password - SoftCrush</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #121126;
+      color: white;
+      display: flex;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      width: 90%;
+      max-width: 420px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px;
+      padding: 28px;
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 14px;
+      margin-top: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+      color: white;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 18px;
+      padding: 14px;
+      border: none;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ff4f8b, #a855f7);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .message {
+      margin-top: 16px;
+      font-size: 14px;
+      color: #c9c6d8;
+      line-height: 1.4;
+    }
+
+    .success {
+      color: #7ee787;
+    }
+
+    .error {
+      color: #ff8a8a;
+    }
+  </style>
 </head>
+
 <body>
+  <div class="card">
+    <h1>Reset your password</h1>
+    <p>Enter a new password for your SoftCrush account.</p>
 
-<div class="logo">🌸</div>
-<h1>SoftCrush</h1>
-<div class="nav">
-  <a href="index.html">Privacy</a>
-  <a href="terms.html">Terms</a>
-</div>
+    <input id="password" type="password" placeholder="New password" />
+    <input id="confirm" type="password" placeholder="Confirm password" />
 
-<h1>Terms of Service</h1>
-<p class="updated">Last updated: 1 May 2026</p>
+    <button id="updateBtn" type="button">Update password</button>
 
-<h2>1. Acceptance</h2>
-<p>By using SoftCrush you agree to these Terms. If you do not agree, do not use the service.</p>
+    <div id="message" class="message">Checking reset link...</div>
+  </div>
 
-<h2>2. Eligibility</h2>
-<p>You must be at least 18 years old to use SoftCrush. By creating an account you confirm you are 18+. We may verify age at any time and terminate accounts that misrepresent age.</p>
+  <script>
+    const SUPABASE_URL = "https://hxgkaefwzouxtbbcgakq.supabase.co"
+    const SUPABASE_ANON_KEY = "PASTE_YOUR_SB_PUBLISHABLE_KEY_HERE"
 
-<h2>3. Community Guidelines</h2>
-<p>SoftCrush is a safe space for queer and sapphic women. You agree to:</p>
-<ul>
-  <li>Treat other users with respect and kindness</li>
-  <li>Use accurate information and real photos of yourself</li>
-  <li>Not engage in harassment, hate speech, or discrimination</li>
-  <li>Not share illegal, sexual, or violent content</li>
-  <li>Not solicit money, scam, or commercially exploit other users</li>
-  <li>Not impersonate other people or organisations</li>
-</ul>
+    const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 
-<h2>4. Content You Post</h2>
-<p>You retain ownership of content you upload (photos, bio, messages). By uploading you grant SoftCrush a licence to display this content within the app to other users.</p>
+    const message = document.getElementById("message")
+    const updateBtn = document.getElementById("updateBtn")
 
-<h2>5. Prohibited Conduct</h2>
-<p>You may not:</p>
-<ul>
-  <li>Use the service for any illegal purpose</li>
-  <li>Reverse engineer or attempt to access our systems</li>
-  <li>Scrape data or use automated tools</li>
-  <li>Create fake accounts or impersonate others</li>
-  <li>Send spam or unsolicited commercial messages</li>
-</ul>
+    let sessionReady = false
 
-<h2>6. Account Termination</h2>
-<p>We reserve the right to suspend or terminate accounts that violate these terms or harm other users. You can delete your account at any time from Profile settings.</p>
+    function showMessage(text, type) {
+      message.innerText = text
+      message.className = "message " + (type || "")
+    }
 
-<h2>7. Safety Disclaimer</h2>
-<p>SoftCrush facilitates connections but cannot verify the identity, intentions, or background of every user. Always exercise caution. Report any concerning behaviour and use our block and report tools.</p>
+    function getHashParams() {
+      const hash = window.location.hash.substring(1)
+      return new URLSearchParams(hash)
+    }
 
-<h2>8. Disclaimer of Warranties</h2>
-<p>SoftCrush is provided "as is" without warranty of any kind. We do not guarantee matches, the behaviour of other users, or uninterrupted service.</p>
+    async function setupSession() {
+      try {
+        const params = getHashParams()
 
-<h2>9. Limitation of Liability</h2>
-<p>To the maximum extent permitted by law, SoftCrush is not liable for any indirect, incidental, or consequential damages arising from use of the service.</p>
+        const access_token = params.get("access_token")
+        const refresh_token = params.get("refresh_token")
+        const error_code = params.get("error_code")
+        const error_description = params.get("error_description")
 
-<h2>10. Changes to Terms</h2>
-<p>We may update these Terms. Continued use after changes means you accept the updated Terms.</p>
+        if (error_code) {
+          showMessage(error_description || "This reset link is invalid or expired.", "error")
+          return
+        }
 
-<h2>11. Governing Law</h2>
-<p>These Terms are governed by the laws of the United Kingdom.</p>
+        if (!access_token || !refresh_token) {
+          showMessage("Invalid or expired reset link. Please request a new one.", "error")
+          return
+        }
 
-<h2>12. Contact</h2>
-<p>Questions: <a href="mailto:admin@softcrush.app">admin@softcrush.app</a><br>
-Safety: <a href="mailto:admin@softcrush.app">admin@softcrush.app</a></p>
+        const { error } = await client.auth.setSession({
+          access_token,
+          refresh_token,
+        })
 
+        if (error) {
+          showMessage(error.message, "error")
+          return
+        }
+
+        sessionReady = true
+
+        window.history.replaceState({}, document.title, "/reset-password.html")
+
+        showMessage("Reset link verified. Enter your new password.", "success")
+      } catch (err) {
+        console.error(err)
+        showMessage(err.message || "Something went wrong verifying the reset link.", "error")
+      }
+    }
+
+    async function resetPassword() {
+      try {
+        if (!sessionReady) {
+          showMessage("Reset link is not ready. Please request a new reset email.", "error")
+          return
+        }
+
+        const password = document.getElementById("password").value
+        const confirm = document.getElementById("confirm").value
+
+        if (password.length < 6) {
+          showMessage("Password must be at least 6 characters.", "error")
+          return
+        }
+
+        if (password !== confirm) {
+          showMessage("Passwords do not match.", "error")
+          return
+        }
+
+        updateBtn.disabled = true
+        updateBtn.innerText = "Updating..."
+
+        const { error } = await client.auth.updateUser({
+          password: password,
+        })
+
+        if (error) {
+          showMessage(error.message, "error")
+          updateBtn.disabled = false
+          updateBtn.innerText = "Update password"
+          return
+        }
+
+        await client.auth.signOut()
+
+        showMessage("Password updated successfully. You can now sign in with your new password.", "success")
+        updateBtn.innerText = "Password updated"
+      } catch (err) {
+        console.error(err)
+        showMessage(err.message || "Could not update password.", "error")
+        updateBtn.disabled = false
+        updateBtn.innerText = "Update password"
+      }
+    }
+
+    updateBtn.addEventListener("click", resetPassword)
+
+    setupSession()
+  </script>
 </body>
 </html>
