@@ -1,100 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SoftCrush · Privacy Policy</title>
-<style>
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 40px 24px 80px;
-    color: #374151;
-    line-height: 1.65;
-    background: linear-gradient(180deg, #fff0f5 0%, #f5f0ff 100%);
-    min-height: 100vh;
-  }
-  h1 { color: #ff5593; font-size: 32px; margin: 0 0 6px; }
-  h2 { color: #1f2937; font-size: 18px; margin-top: 32px; margin-bottom: 8px; }
-  .updated { color: #9ca3af; font-size: 13px; margin-bottom: 32px; }
-  p, li { font-size: 15px; }
-  ul { padding-left: 20px; }
-  li { margin-bottom: 4px; }
-  a { color: #ff5593; }
-  .nav { margin-bottom: 32px; }
-  .nav a { margin-right: 16px; text-decoration: none; font-weight: 600; }
-  .logo { font-size: 32px; margin-bottom: 8px; }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoftCrush · Privacy Policy</title>
+
+  <style>
+    :root {
+      --bg: #121126;
+      --bg2: #1b1638;
+      --card: rgba(255, 255, 255, 0.08);
+      --card-border: rgba(255, 255, 255, 0.14);
+      --text: #ffffff;
+      --muted: #c9c6d8;
+      --soft: #ff4f8b;
+      --soft2: #a855f7;
+      --danger: #ff8a8a;
+      --success: #7ee787;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255, 79, 139, 0.22), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(168, 85, 247, 0.24), transparent 36%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.65;
+      padding: 32px 18px 72px;
+    }
+
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .logo {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--soft), var(--soft2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      box-shadow: 0 18px 40px rgba(255, 79, 139, 0.28);
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .brand p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 22px 0 28px;
+    }
+
+    .nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+    }
+
+    .nav a.active {
+      background: linear-gradient(135deg, var(--soft), var(--soft2));
+      border-color: transparent;
+    }
+
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      padding: 30px;
+      margin-bottom: 22px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+    }
+
+    .hero h2 {
+      margin: 0 0 10px;
+      font-size: clamp(34px, 7vw, 58px);
+      line-height: 1.03;
+      letter-spacing: -1.5px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #ff7aaa, #c084fc);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .updated {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .content {
+      background: rgba(255, 255, 255, 0.065);
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      padding: 30px;
+    }
+
+    h3 {
+      margin: 34px 0 10px;
+      font-size: 20px;
+      color: #ffffff;
+    }
+
+    h3:first-child {
+      margin-top: 0;
+    }
+
+    p, li {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    ul {
+      padding-left: 22px;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    a {
+      color: #ff7aaa;
+      font-weight: 700;
+    }
+
+    .footer {
+      margin-top: 26px;
+      color: rgba(255, 255, 255, 0.48);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 560px) {
+      .hero, .content {
+        padding: 22px;
+        border-radius: 24px;
+      }
+
+      .brand h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
 </head>
+
 <body>
+  <main class="page">
+    <header class="brand">
+      <div class="logo">💖</div>
+      <div>
+        <h1>SoftCrush</h1>
+        <p>A softer, safer dating space.</p>
+      </div>
+    </header>
 
-<div class="logo">🌸</div>
-<h1>SoftCrush</h1>
-<div class="nav">
-  <a href="privacy.html">Privacy</a>
-  <a href="terms.html">Terms</a>
-</div>
+    <nav class="nav">
+      <a class="active" href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="/support.html">Support</a>
+    </nav>
 
-<h1>Privacy Policy</h1>
-<p class="updated">Last updated: 1 May 2026</p>
+    <section class="hero">
+      <h2>Privacy <span class="gradient-text">Policy</span></h2>
+      <p class="updated">Last updated: 1 May 2026</p>
+    </section>
 
-<h2>1. Information We Collect</h2>
-<p>When you use SoftCrush we collect:</p>
-<ul>
-  <li>Account info: email, password (encrypted), date of birth</li>
-  <li>Profile info: name, age, city, bio, interests, photos</li>
-  <li>Approximate location to find nearby matches</li>
-  <li>Messages you send to your matches</li>
-  <li>Likes, matches, blocks, and reports</li>
-</ul>
+    <section class="content">
+      <h3>1. Information We Collect</h3>
+      <p>When you use SoftCrush we collect:</p>
+      <ul>
+        <li>Account info: email, password encrypted by our authentication provider, and date of birth</li>
+        <li>Profile info: name, age, city, bio, interests, and photos</li>
+        <li>Approximate location to help find nearby matches</li>
+        <li>Messages you send to your matches</li>
+        <li>Likes, matches, blocks, and reports</li>
+      </ul>
 
-<h2>2. How We Use Your Data</h2>
-<p>We use your data to:</p>
-<ul>
-  <li>Provide the matching and messaging features</li>
-  <li>Show you nearby profiles based on your search radius</li>
-  <li>Keep the community safe (moderation, blocks, reports)</li>
-  <li>Communicate important updates about your account</li>
-</ul>
+      <h3>2. How We Use Your Data</h3>
+      <p>We use your data to:</p>
+      <ul>
+        <li>Provide matching and messaging features</li>
+        <li>Show nearby profiles based on your search radius</li>
+        <li>Keep the community safe through moderation, blocks, and reports</li>
+        <li>Communicate important account updates</li>
+      </ul>
 
-<h2>3. Data Sharing</h2>
-<p>We do not sell your personal data. We share limited information only with:</p>
-<ul>
-  <li>Other users — your profile (name, age, photos, bio, interests, city, distance) is visible to other authenticated users</li>
-  <li>Service providers — Supabase (database, storage, auth) under strict data agreements</li>
-  <li>Legal authorities — when required by law or to protect user safety</li>
-</ul>
+      <h3>3. Data Sharing</h3>
+      <p>We do not sell your personal data. We share limited information only with:</p>
+      <ul>
+        <li>Other users — your profile, including name, age, photos, bio, interests, city, and distance, may be visible to authenticated users</li>
+        <li>Service providers — including Supabase for database, storage, and authentication services</li>
+        <li>Legal authorities — when required by law or to protect user safety</li>
+      </ul>
 
-<h2>4. Location Data</h2>
-<p>We use your approximate location only to calculate distance to other users. Your exact coordinates are never shown to other users — they only see distance in kilometres. You can disable location at any time from your device settings.</p>
+      <h3>4. Location Data</h3>
+      <p>We use your approximate location only to calculate distance to other users. Your exact coordinates are never shown to other users. They only see distance in kilometres. You can disable location at any time from your device settings.</p>
 
-<h2>5. Photos</h2>
-<p>Photos you upload are stored privately. Only authenticated SoftCrush users can view photos. Photos are accessed via signed URLs that expire over time.</p>
+      <h3>5. Photos</h3>
+      <p>Photos you upload are stored securely. Authenticated SoftCrush users may view profile photos as part of the app experience. Photos may be accessed through signed URLs that expire over time.</p>
 
-<h2>6. Your Rights</h2>
-<p>You have the right to:</p>
-<ul>
-  <li>Access your data — download via Profile settings</li>
-  <li>Correct inaccurate data — edit anytime in Profile</li>
-  <li>Delete your account — Profile → Delete account (permanent)</li>
-  <li>Object to processing — contact admin@softcrush.app</li>
-</ul>
+      <h3>6. Your Rights</h3>
+      <p>You have the right to:</p>
+      <ul>
+        <li>Access your data</li>
+        <li>Correct inaccurate profile information</li>
+        <li>Delete your account from Profile settings</li>
+        <li>Contact us about privacy concerns</li>
+      </ul>
 
-<h2>7. Data Retention</h2>
-<p>We keep your data while your account is active. When you delete your account all your personal data is permanently deleted within 30 days, except where we are legally required to retain it.</p>
+      <h3>7. Data Retention</h3>
+      <p>We keep your data while your account is active. When you delete your account, your personal data is permanently deleted within 30 days, except where we are legally required to retain it.</p>
 
-<h2>8. Children</h2>
-<p>SoftCrush is strictly for users 18 and older. We verify age at signup. If we discover an account belongs to someone under 18 we delete it immediately.</p>
+      <h3>8. Children</h3>
+      <p>SoftCrush is strictly for users 18 and older. If we discover an account belongs to someone under 18, we will delete it.</p>
 
-<h2>9. Security</h2>
-<p>We use industry-standard encryption for data in transit (HTTPS/TLS) and at rest. Passwords are hashed and never stored in plain text.</p>
+      <h3>9. Security</h3>
+      <p>We use industry-standard protections for data in transit and at rest. Passwords are handled by our authentication provider and are not stored in plain text.</p>
 
-<h2>10. Changes</h2>
-<p>We may update this policy. Material changes will be communicated via email or in-app notice.</p>
+      <h3>10. Changes</h3>
+      <p>We may update this policy. Material changes may be communicated by email or in-app notice.</p>
 
-<h2>11. Contact</h2>
-<p>Privacy questions: <a href="mailto:admin@softcrush.app">admin@softcrush.app</a><br>
+      <h3>11. Contact</h3>
+      <p>Privacy questions: <a href="mailto:admin@softcrush.app">admin@softcrush.app</a></p>
+    </section>
 
+    <p class="footer">© 2026 SoftCrush. All rights reserved.</p>
+  </main>
 </body>
 </html>
