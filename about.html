@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About SoftCrush</title>
+
+  <style>
+    :root {
+      --bg: #121126;
+      --bg2: #1b1638;
+      --card: rgba(255, 255, 255, 0.08);
+      --card-border: rgba(255, 255, 255, 0.14);
+      --text: #ffffff;
+      --muted: #c9c6d8;
+      --soft: #ff4f8b;
+      --soft2: #a855f7;
+      --soft3: #ff7aaa;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255, 79, 139, 0.26), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(168, 85, 247, 0.28), transparent 38%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.65;
+      padding: 32px 18px 72px;
+      overflow-x: hidden;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .logo {
+      width: 58px;
+      height: 58px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--soft), var(--soft2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      box-shadow: 0 18px 44px rgba(255, 79, 139, 0.32);
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .brand p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 22px 0 28px;
+    }
+
+    .nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+    }
+
+    .nav a.active {
+      background: linear-gradient(135deg, var(--soft), var(--soft2));
+      border-color: transparent;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 32px;
+      padding: 38px;
+      margin-bottom: 22px;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.32);
+    }
+
+    .hero::after {
+      content: "💖";
+      position: absolute;
+      right: 34px;
+      top: 26px;
+      font-size: 70px;
+      opacity: 0.18;
+      transform: rotate(12deg);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #ffd0e2;
+      background: rgba(255, 79, 139, 0.16);
+      border: 1px solid rgba(255, 79, 139, 0.26);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    .hero h2 {
+      margin: 0 0 14px;
+      font-size: clamp(42px, 8vw, 76px);
+      line-height: 0.98;
+      letter-spacing: -2px;
+      max-width: 780px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #ff7aaa, #c084fc);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 720px;
+      margin: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 22px 0;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.065);
+      border: 1px solid var(--card-border);
+      border-radius: 26px;
+      padding: 24px;
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(255, 79, 139, 0.28), rgba(168, 85, 247, 0.28));
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 14px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.065);
+      border: 1px solid var(--card-border);
+      border-radius: 30px;
+      padding: 30px;
+      margin-top: 22px;
+    }
+
+    .section h3 {
+      margin: 0 0 10px;
+      font-size: 28px;
+    }
+
+    .section p {
+      color: var(--muted);
+      font-size: 16px;
+      margin: 0 0 14px;
+    }
+
+    .quote {
+      margin-top: 22px;
+      padding: 24px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(255, 79, 139, 0.18), rgba(168, 85, 247, 0.16));
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .quote p {
+      margin: 0;
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: white;
+      font-weight: 800;
+      padding: 13px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--soft), var(--soft2));
+    }
+
+    .button.secondary {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+    }
+
+    .footer {
+      margin-top: 28px;
+      color: rgba(255, 255, 255, 0.48);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    a {
+      color: #ff7aaa;
+      font-weight: 700;
+    }
+
+    @media (max-width: 760px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero, .section {
+        padding: 24px;
+        border-radius: 26px;
+      }
+
+      .hero::after {
+        font-size: 48px;
+        right: 20px;
+        top: 18px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <header class="brand">
+      <div class="logo">💖</div>
+      <div>
+        <h1>SoftCrush</h1>
+        <p>A softer, safer dating space.</p>
+      </div>
+    </header>
+
+    <nav class="nav">
+      <a class="active" href="/about.html">About</a>
+      <a href="/support.html">Support</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+    </nav>
+
+    <section class="hero">
+      <div class="eyebrow">Queer-first dating · softer by design</div>
+      <h2>Find your <span class="gradient-text">soft connection</span></h2>
+      <p>
+        SoftCrush is a dating and connection app created for queer women who want something warmer,
+        calmer, and more intentional than endless swiping.
+      </p>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <div class="card-icon">💞</div>
+        <h3>Real matches</h3>
+        <p>Discover people with shared interests, thoughtful profiles, and genuine intent.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🛡️</div>
+        <h3>Safety first</h3>
+        <p>Block, report, and access safety resources designed to help you feel in control.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🌈</div>
+        <h3>Queer-first</h3>
+        <p>Built around the needs, comfort, and lived experiences of queer women.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h3>Why SoftCrush exists</h3>
+      <p>
+        Dating apps can feel loud, rushed, and overwhelming. SoftCrush is built to feel different:
+        more thoughtful, more respectful, and more emotionally safe.
+      </p>
+      <p>
+        Our goal is to create a space where queer women can meet, match, and talk without pressure —
+        whether they are looking for friendship, dating, or something deeper.
+      </p>
+
+      <div class="quote">
+        <p>SoftCrush is about softer energy, real connection, and a safer space to meet someone who feels right.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h3>Built with care</h3>
+      <p>
+        SoftCrush includes safety tools, privacy-conscious design, and a community-first approach.
+        We believe connection should feel exciting, but also comfortable and respectful.
+      </p>
+      <p>
+        If you need help, have questions, or want to report a concern, our support page is always available.
+      </p>
+
+      <div class="links">
+        <a class="button" href="/support.html">Get support</a>
+        <a class="button secondary" href="/privacy.html">Privacy Policy</a>
+        <a class="button secondary" href="/terms.html">Terms</a>
+      </div>
+    </section>
+
+    <p class="footer">© 2026 SoftCrush. All rights reserved.</p>
+  </main>
+</body>
+</html>
