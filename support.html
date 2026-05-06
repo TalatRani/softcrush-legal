@@ -1,91 +1,255 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>SoftCrush Support</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoftCrush · Support</title>
+
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #121126;
-      color: white;
-      line-height: 1.6;
-      padding: 32px;
+    :root {
+      --bg: #121126;
+      --bg2: #1b1638;
+      --card: rgba(255, 255, 255, 0.08);
+      --card-border: rgba(255, 255, 255, 0.14);
+      --text: #ffffff;
+      --muted: #c9c6d8;
+      --soft: #ff4f8b;
+      --soft2: #a855f7;
+      --success: #7ee787;
     }
 
-    .container {
-      max-width: 760px;
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255, 79, 139, 0.22), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(168, 85, 247, 0.24), transparent 36%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.65;
+      padding: 32px 18px 72px;
+    }
+
+    .page {
+      max-width: 860px;
       margin: 0 auto;
     }
 
-    h1 {
-      color: #ff4f8b;
-      font-size: 36px;
-      margin-bottom: 8px;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
     }
 
-    h2 {
-      margin-top: 32px;
-      color: white;
+    .logo {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--soft), var(--soft2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      box-shadow: 0 18px 40px rgba(255, 79, 139, 0.28);
     }
 
-    p, li {
-      color: #d6d2e5;
-      font-size: 16px;
+    .brand h1 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .brand p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 22px 0 28px;
+    }
+
+    .nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+    }
+
+    .nav a.active {
+      background: linear-gradient(135deg, var(--soft), var(--soft2));
+      border-color: transparent;
+    }
+
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      padding: 30px;
+      margin-bottom: 22px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+    }
+
+    .hero h2 {
+      margin: 0 0 10px;
+      font-size: clamp(34px, 7vw, 58px);
+      line-height: 1.03;
+      letter-spacing: -1.5px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #ff7aaa, #c084fc);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      margin: 0;
+      max-width: 680px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.065);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 24px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+    }
+
+    .card p, .card li {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    ul {
+      padding-left: 22px;
+      margin-bottom: 0;
+    }
+
+    li {
+      margin-bottom: 6px;
     }
 
     a {
       color: #ff7aaa;
-      font-weight: bold;
+      font-weight: 700;
     }
 
-    .card {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 18px;
-      padding: 22px;
-      margin-top: 24px;
+    .email-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--soft), var(--soft2));
+      color: white;
+      text-decoration: none;
+      font-weight: 800;
+      margin-top: 8px;
+    }
+
+    .footer {
+      margin-top: 26px;
+      color: rgba(255, 255, 255, 0.48);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 560px) {
+      .hero, .card {
+        padding: 22px;
+        border-radius: 24px;
+      }
+
+      .brand h1 {
+        font-size: 24px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>SoftCrush Support</h1>
-    <p>Need help with SoftCrush? We’re here to help.</p>
+  <main class="page">
+    <header class="brand">
+      <div class="logo">💖</div>
+      <div>
+        <h1>SoftCrush</h1>
+        <p>A softer, safer dating space.</p>
+      </div>
+    </header>
 
-    <div class="card">
-      <h2>Contact us</h2>
-      <p>Email us at <a href="mailto:admin@softcrush.app">admin@softcrush.app</a></p>
-      <p>We aim to respond as soon as possible.</p>
-    </div>
+    <nav class="nav">
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+      <a class="active" href="/support.html">Support</a>
+    </nav>
 
-    <div class="card">
-      <h2>Account help</h2>
-      <ul>
-        <li>If you forgot your password, use the password reset option on the sign-in screen.</li>
-        <li>If you need help accessing your account, contact us from the email linked to your account.</li>
-        <li>You can manage or delete your account from inside the app.</li>
-      </ul>
-    </div>
+    <section class="hero">
+      <h2>SoftCrush <span class="gradient-text">Support</span></h2>
+      <p>Need help with your account, safety, password reset, or app experience? We’re here to help.</p>
+    </section>
 
-    <div class="card">
-      <h2>Safety and reporting</h2>
-      <p>
-        If someone behaves inappropriately, use the block or report tools inside the app.
-        Reports are reviewed by our team.
-      </p>
-      <p>
-        For urgent danger or emergencies, contact local emergency services immediately.
-      </p>
-    </div>
+    <section class="grid">
+      <div class="card">
+        <h3>Contact us</h3>
+        <p>For support, account help, privacy questions, or safety concerns, email us:</p>
+        <a class="email-box" href="mailto:admin@softcrush.app">admin@softcrush.app</a>
+      </div>
 
-    <div class="card">
-      <h2>Legal</h2>
-      <p><a href="/privacy.html">Privacy Policy</a></p>
-      <p><a href="/terms.html">Terms of Service</a></p>
-    </div>
-  </div>
+      <div class="card">
+        <h3>Account help</h3>
+        <ul>
+          <li>If you forgot your password, use the password reset option on the sign-in screen.</li>
+          <li>If you cannot access your account, contact us from the email linked to your SoftCrush account.</li>
+          <li>You can update your profile from inside the app.</li>
+          <li>You can delete your account from Profile settings.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Safety and reporting</h3>
+        <p>If someone behaves inappropriately, use the block or report tools inside the app. Reports are reviewed by our team.</p>
+        <p>If you are in immediate danger, contact your local emergency services.</p>
+      </div>
+
+      <div class="card">
+        <h3>Password reset</h3>
+        <p>Password reset links are sent by email. If a reset link says it is expired, request a new one and use the most recent email.</p>
+        <p>You can reset your password here: <a href="/reset-password.html">Reset password</a></p>
+      </div>
+
+      <div class="card">
+        <h3>Legal</h3>
+        <p><a href="/privacy.html">Privacy Policy</a></p>
+        <p><a href="/terms.html">Terms of Service</a></p>
+      </div>
+    </section>
+
+    <p class="footer">© 2026 SoftCrush. All rights reserved.</p>
+  </main>
 </body>
 </html>
