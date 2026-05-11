@@ -15,8 +15,6 @@
       --muted: #c9c6d8;
       --soft: #ff4f8b;
       --soft2: #a855f7;
-      --danger: #ff8a8a;
-      --success: #7ee787;
     }
 
     * {
@@ -111,6 +109,13 @@
       letter-spacing: -1.5px;
     }
 
+    .hero p {
+      color: var(--muted);
+      margin: 10px 0 0;
+      font-size: 16px;
+      max-width: 680px;
+    }
+
     .gradient-text {
       background: linear-gradient(135deg, #ff7aaa, #c084fc);
       -webkit-background-clip: text;
@@ -184,11 +189,12 @@
       <div class="logo">💖</div>
       <div>
         <h1>SoftCrush</h1>
-        <p>A softer, safer dating space.</p>
+        <p>A softer, safer social space for women.</p>
       </div>
     </header>
 
     <nav class="nav">
+      <a href="/about.html">About</a>
       <a class="active" href="/privacy.html">Privacy</a>
       <a href="/terms.html">Terms</a>
       <a href="/support.html">Support</a>
@@ -197,65 +203,104 @@
     <section class="hero">
       <h2>Privacy <span class="gradient-text">Policy</span></h2>
       <p class="updated">Last updated: 1 May 2026</p>
+      <p>
+        This policy explains how SoftCrush collects, uses, and protects information when you use our social networking app for women.
+      </p>
     </section>
 
     <section class="content">
       <h3>1. Information We Collect</h3>
-      <p>When you use SoftCrush we collect:</p>
+      <p>When you use SoftCrush, we may collect:</p>
       <ul>
-        <li>Account info: email, password encrypted by our authentication provider, and date of birth</li>
-        <li>Profile info: name, age, city, bio, interests, and photos</li>
-        <li>Approximate location to help find nearby matches</li>
-        <li>Messages you send to your matches</li>
-        <li>Likes, matches, blocks, and reports</li>
+        <li>Account information, such as email address, encrypted authentication details, and date of birth</li>
+        <li>Profile information, such as name, age, city, bio, interests, photos, communities, and connection preferences</li>
+        <li>Approximate location information to help show nearby people, groups, and events</li>
+        <li>Messages and conversations you send through the app</li>
+        <li>Connection activity, including connection requests, accepted connections, blocks, reports, joined groups, and event RSVPs</li>
+        <li>Basic device, usage, and diagnostic information to help keep the app secure and reliable</li>
       </ul>
 
       <h3>2. How We Use Your Data</h3>
-      <p>We use your data to:</p>
+      <p>We use your information to:</p>
       <ul>
-        <li>Provide matching and messaging features</li>
-        <li>Show nearby profiles based on your search radius</li>
-        <li>Keep the community safe through moderation, blocks, and reports</li>
-        <li>Communicate important account updates</li>
+        <li>Create and manage your SoftCrush account</li>
+        <li>Show you people, groups, events, and interests that may be relevant to you</li>
+        <li>Enable connection requests, messaging, group discovery, and event RSVP features</li>
+        <li>Personalise your experience based on your interests and preferences</li>
+        <li>Keep the community safe through moderation, blocks, reports, and safety tools</li>
+        <li>Communicate important service, security, or account updates</li>
+        <li>Improve app performance, reliability, and user experience</li>
       </ul>
 
       <h3>3. Data Sharing</h3>
-      <p>We do not sell your personal data. We share limited information only with:</p>
+      <p>We do not sell your personal data. We only share limited information where needed to provide or protect the service:</p>
       <ul>
-        <li>Other users — your profile, including name, age, photos, bio, interests, city, and distance, may be visible to authenticated users</li>
-        <li>Service providers — including Supabase for database, storage, and authentication services</li>
-        <li>Legal authorities — when required by law or to protect user safety</li>
+        <li>Other users may see parts of your profile, such as your name, age, photos, bio, interests, city, groups, connection preferences, and approximate distance</li>
+        <li>Service providers, including Supabase, may process data for authentication, database, storage, and app infrastructure</li>
+        <li>Legal authorities, if required by law or necessary to protect user safety, rights, or security</li>
       </ul>
 
       <h3>4. Location Data</h3>
-      <p>We use your approximate location only to calculate distance to other users. Your exact coordinates are never shown to other users. They only see distance in kilometres. You can disable location at any time from your device settings.</p>
+      <p>
+        We use approximate location to help show nearby people, groups, and events. Your exact coordinates are not shown to other users.
+        Other users may only see general location information or distance, where applicable. You can disable location access in your device settings.
+      </p>
 
-      <h3>5. Photos</h3>
-      <p>Photos you upload are stored securely. Authenticated SoftCrush users may view profile photos as part of the app experience. Photos may be accessed through signed URLs that expire over time.</p>
+      <h3>5. Photos and Profile Content</h3>
+      <p>
+        Photos and profile content you upload may be visible to authenticated SoftCrush users as part of the app experience.
+        Photos may be stored securely and accessed using signed URLs that expire over time.
+      </p>
 
-      <h3>6. Your Rights</h3>
-      <p>You have the right to:</p>
+      <h3>6. Messages</h3>
+      <p>
+        Messages are used to provide conversations between connected users. We may review messages or reports where necessary for safety,
+        moderation, abuse prevention, or legal compliance.
+      </p>
+
+      <h3>7. Groups and Events</h3>
+      <p>
+        When you join groups or RSVP to events, this activity may be used to personalise your experience and show relevant communities,
+        events, and people. Some group or event participation information may be visible to other users where it forms part of the app experience.
+      </p>
+
+      <h3>8. Your Rights</h3>
+      <p>You may have the right to:</p>
       <ul>
-        <li>Access your data</li>
-        <li>Correct inaccurate profile information</li>
-        <li>Delete your account from Profile settings</li>
-        <li>Contact us about privacy concerns</li>
+        <li>Access the personal data we hold about you</li>
+        <li>Correct inaccurate profile or account information</li>
+        <li>Delete your account from Profile or Settings inside the app</li>
+        <li>Ask questions or raise privacy concerns by contacting us</li>
       </ul>
 
-      <h3>7. Data Retention</h3>
-      <p>We keep your data while your account is active. When you delete your account, your personal data is permanently deleted within 30 days, except where we are legally required to retain it.</p>
+      <h3>9. Data Retention</h3>
+      <p>
+        We keep your information while your account is active or as needed to provide the service. When you delete your account,
+        your personal data is deleted or anonymised within 30 days, except where we are legally required or permitted to retain it.
+      </p>
 
-      <h3>8. Children</h3>
-      <p>SoftCrush is strictly for users 18 and older. If we discover an account belongs to someone under 18, we will delete it.</p>
+      <h3>10. Age Requirement</h3>
+      <p>
+        SoftCrush is strictly for users aged 18 and older. If we discover that an account belongs to someone under 18,
+        we will take steps to remove the account.
+      </p>
 
-      <h3>9. Security</h3>
-      <p>We use industry-standard protections for data in transit and at rest. Passwords are handled by our authentication provider and are not stored in plain text.</p>
+      <h3>11. Security</h3>
+      <p>
+        We use reasonable technical and organisational measures to protect your information. Data is protected in transit using HTTPS/TLS.
+        Passwords are handled by our authentication provider and are not stored in plain text by SoftCrush.
+      </p>
 
-      <h3>10. Changes</h3>
-      <p>We may update this policy. Material changes may be communicated by email or in-app notice.</p>
+      <h3>12. Changes to This Policy</h3>
+      <p>
+        We may update this Privacy Policy from time to time. If we make material changes, we may notify you by email,
+        in-app notice, or by updating this page.
+      </p>
 
-      <h3>11. Contact</h3>
-      <p>Privacy questions: <a href="mailto:admin@softcrush.app">admin@softcrush.app</a></p>
+      <h3>13. Contact</h3>
+      <p>
+        Privacy questions: <a href="mailto:admin@softcrush.app">admin@softcrush.app</a>
+      </p>
     </section>
 
     <p class="footer">© 2026 SoftCrush. All rights reserved.</p>
