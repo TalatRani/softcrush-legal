@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoftCrush · A Softer, Safer Social Space for Women</title>
+  <meta name="description" content="SoftCrush is a women's social discovery platform for friendships, communities, events, and meaningful connections." />
+
+  <style>
+    :root {
+      --bg: #121126;
+      --bg2: #1b1638;
+      --card: rgba(255, 255, 255, 0.08);
+      --card-border: rgba(255, 255, 255, 0.14);
+      --text: #ffffff;
+      --muted: #c9c6d8;
+      --soft: #ff4f8b;
+      --soft2: #a855f7;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255, 79, 139, 0.22), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(168, 85, 247, 0.24), transparent 36%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.65;
+      padding: 32px 18px 72px;
+    }
+
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* Brand header */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .logo {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--soft), var(--soft2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      box-shadow: 0 18px 40px rgba(255, 79, 139, 0.28);
+      flex-shrink: 0;
+    }
+
+    .brand h1 {
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .brand p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Nav */
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 22px 0 28px;
+    }
+
+    .nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+      transition: opacity 0.2s;
+    }
+
+    .nav a:hover { opacity: 0.8; }
+
+    .nav a.active {
+      background: linear-gradient(135deg, var(--soft), var(--soft2));
+      border-color: transparent;
+    }
+
+    /* Hero */
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      padding: 48px 36px;
+      margin-bottom: 22px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: clamp(36px, 8vw, 64px);
+      line-height: 1.03;
+      letter-spacing: -1.5px;
+      margin-bottom: 18px;
+    }
+
+    .hero .subtitle {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #ff7aaa, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--soft), var(--soft2));
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 28px;
+      border-radius: 999px;
+      box-shadow: 0 8px 28px rgba(255, 79, 139, 0.35);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .btn-secondary {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 28px;
+      border-radius: 999px;
+      transition: opacity 0.2s;
+    }
+
+    .btn-secondary:hover { opacity: 0.75; }
+
+    /* Feature cards */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 28px 24px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .feature-icon {
+      font-size: 32px;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .feature-card h3 {
+      font-size: 17px;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* About strip */
+    .about-strip {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      padding: 36px;
+      margin-bottom: 22px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+    }
+
+    .about-strip h2 {
+      font-size: clamp(26px, 5vw, 38px);
+      letter-spacing: -0.8px;
+      margin-bottom: 14px;
+      line-height: 1.1;
+    }
+
+    .about-strip p {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 680px;
+    }
+
+    .about-strip p + p { margin-top: 10px; }
+
+    /* Safety badge */
+    .safety-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 79, 139, 0.12);
+      border: 1px solid rgba(255, 79, 139, 0.28);
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #ff9abe;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 26px;
+      color: rgba(255, 255, 255, 0.48);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .footer a {
+      color: rgba(255, 255, 255, 0.48);
+      text-decoration: none;
+    }
+
+    .footer a:hover { color: #ff7aaa; }
+
+    @media (max-width: 560px) {
+      .hero { padding: 32px 22px; }
+      .about-strip { padding: 24px 22px; border-radius: 24px; }
+      .feature-card { border-radius: 20px; }
+      .brand h1 { font-size: 24px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <header class="brand">
+      <div class="logo">💖</div>
+      <div>
+        <h1>SoftCrush</h1>
+        <p>A softer, safer social space for women.</p>
+      </div>
+    </header>
+
+    <nav class="nav">
+      <a class="active" href="/">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="/support.html">Support</a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <h2>Your <span class="gradient-text">Social Space,</span><br>Your Rules.</h2>
+      <p class="subtitle">
+        SoftCrush is a social discovery platform built for women — find your community, discover events, make friends, and connect on your terms.
+      </p>
+      <div class="cta-group">
+        <a href="https://apps.apple.com/app/softcrush" class="btn-primary">📱 Download on iOS</a>
+        <a href="https://play.google.com/store/apps/details?id=com.softcrush" class="btn-secondary">🤖 Get it on Android</a>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <div class="features">
+      <div class="feature-card">
+        <span class="feature-icon">👯‍♀️</span>
+        <h3>Find Your People</h3>
+        <p>Discover women nearby who share your interests, values, and vibe — for friendship, community, or more.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🏡</span>
+        <h3>Join Communities</h3>
+        <p>Be part of groups built around shared passions — from book clubs to fitness, wellness, and beyond.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🗓️</span>
+        <h3>Discover Events</h3>
+        <p>Find local and online events happening in your world — meet people in real life, safely.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">💬</span>
+        <h3>Real Conversations</h3>
+        <p>Chat directly or in community spaces. No spam, no bots — just genuine connection.</p>
+      </div>
+    </div>
+
+    <!-- About -->
+    <section class="about-strip">
+      <h2>Built with <span class="gradient-text">safety first.</span></h2>
+      <p>
+        SoftCrush was designed from the ground up to be a space where women feel safe, seen, and in control. We built in moderation, reporting tools, and community guidelines that actually mean something.
+      </p>
+      <p>
+        Whether you're new to a city, looking for your tribe, or just want a kinder corner of the internet — SoftCrush is for you.
+      </p>
+      <div class="safety-row">
+        <span class="badge">✅ Content Moderation</span>
+        <span class="badge">🚫 Block & Report Tools</span>
+        <span class="badge">🔒 Your Data, Protected</span>
+        <span class="badge">👩 Women-Only Space</span>
+      </div>
+    </section>
+
+    <p class="footer">
+      © 2026 SoftCrush. All rights reserved. &nbsp;·&nbsp;
+      <a href="/privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
+      <a href="/terms.html">Terms of Service</a> &nbsp;·&nbsp;
+      <a href="/support.html">Support</a>
+    </p>
+
+  </main>
+</body>
+</html>
